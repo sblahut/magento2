@@ -1,0 +1,47 @@
+<?php
+/**
+ * Rocket Web
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category  RocketWeb
+ * @package   RocketWeb_CheckoutEnhacement
+ * @copyright Copyright (c) 2016-2017 RocketWeb (http://rocketweb.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author    Rocket Web Inc.
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php
+/** @var \RocketWeb\CheckoutEnhancement\Helper\Data $_helper */
+$_helper = $this->helper('RocketWeb\CheckoutEnhancement\Helper\Data');
+?>
+<?php if ($_helper->isActiveGoogleAddress()): ?>
+<?php
+$params = ['key' => $_helper->getGoogleMapApiKey()];
+$library  = $_helper->getGoogleMapAddressLibraries();
+if (!empty($library)) {
+    $params['libraries'] = $library;
+}
+$country = $_helper->getGoogleMapAddressCountries();
+if (!empty($country)) {
+    $params['country'] = implode(",", $country);
+}
+$language = $_helper->getGoogleMapAddressLanguage();
+if (!empty($language)) {
+    $params['language'] = $language;
+}
+$paramsStr = '';
+foreach ($params as $key => $value) {
+    $paramsStr .= '&' . $key . '=' . $value;
+}
+$paramsStr = trim($paramsStr, "&");
+?>
+<?php /** todo http://stackoverflow.com/questions/15795648/how-to-load-google-maps-api-with-requirejs */?>
+<script src="https://maps.googleapis.com/maps/api/js?<?php echo /* @escapeNotVerified */ $paramsStr ?>" async defer></script>
+<?php endif; ?>

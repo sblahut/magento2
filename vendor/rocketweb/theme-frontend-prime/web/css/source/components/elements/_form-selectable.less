@@ -1,0 +1,155 @@
+/**
+ * Copyright © 2019 Rocket Web. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+
+//
+//  Variables
+//  ---------------------------------------------
+@rw-form-choice__size: 24px;
+
+
+//
+//  Utilities
+//  ---------------------------------------------
+.rwp-choice(@rw-choice__size: 24px, @rw-choice__color: black) {
+    [type='checkbox'] {
+        + label {
+            @inner-padding: 4px;
+
+            .lib-icon-font(
+                @_icon-font-content: @rw-icon-tick,
+                @_icon-font: @rw-icon__font,
+                @_icon-font-size: @rw-choice__size - @inner-padding,
+                @_icon-font-color: @rw-choice__color,
+                @_icon-font-position: after
+            );
+
+            &::after {
+                left: @rw-choice__size * .2 + 1;
+                top: @rw-choice__size / 3;
+            }
+
+            &::before {
+                left: 2px;
+                width: @rw-choice__size;
+                height: @rw-choice__size;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    [type='radio'] {
+        + label {
+            @inner-padding: 10px;
+
+            &::after {
+                content: '';
+                left: @inner-padding / 2 + 1;
+                top: @rw-choice__size / 3 + @inner-padding / 2 + 1;
+                width: @rw-choice__size - @inner-padding;
+                height: @rw-choice__size - @inner-padding;
+                background-color: @rw-choice__color;
+                border-radius: 50%;
+            }
+
+            &::before {
+                width: @rw-choice__size;
+                height: @rw-choice__size;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    [type='checkbox'],
+    [type='radio'] {
+        /* Normal state */
+        .lib-visually-hidden(); // hide default magento checkboxes and radios
+
+        + label {
+            position: relative;
+            cursor: pointer;
+            padding: (@rw-choice__size / 2) 0 (@rw-choice__size / 2) calc(@rw-choice__size + @indent__s);
+            margin: @form-element-choice__margin;
+            .lib-vendor-prefix-display();
+
+            &::after {
+                position: absolute;
+                text-transform: none;
+                .lib-css(transition, all .2s, 1);
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: @rw-choice__size / 3;
+                border: 1px solid lighten(@rw-choice__color, 80%);
+                text-transform: none;
+            }
+        }
+
+        /* Unchecked state */
+        &:not(:checked) {
+            + label {
+                &::after {
+                    opacity: 0;
+                    .lib-css(transform, scale(0), 1);
+                }
+            }
+        }
+
+        /* Checked state */
+        &:checked {
+            + label {
+                &::after {
+                    opacity: 1;
+                    .lib-css(transform, scale(1), 1);
+                }
+            }
+        }
+
+        /* Disabled state */
+        &:disabled {
+            + label::before {
+                opacity: .4;
+            }
+        }
+
+        &:disabled:checked {
+            + label::after {
+                opacity: .4;
+            }
+        }
+    }
+}
+
+.rwp-dropdown() {
+    appearance: none;
+    background: @select__background url('../images/select-bg.svg') no-repeat 100% 48%;
+    .lib-css(appearance, none, 1);
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    .lt-ie10 & {
+        background-image: none;
+        padding-right: 4px;
+    }
+}
+
+
+//
+//  Styles
+//  ---------------------------------------------
+.rwp-form-reset();
+
+.choice {
+    .rwp-choice(@rw-form-choice__size);
+}
+
+select {
+    .rwp-dropdown();
+}

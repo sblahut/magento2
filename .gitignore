@@ -69,6 +69,10 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+
+### Theme Template Install with Carsousel Widget ###
+!/vendor/rocketweb
+
 /generated/*
 !/generated/.htaccess
 .DS_Store

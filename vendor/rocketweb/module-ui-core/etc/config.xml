@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rocket Web
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category  RocketWeb
+ * @package   RocketWeb_UiCore
+ * @copyright Copyright (c) 2016-2017 RocketWeb (http://rocketweb.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author    Rocket Web Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rw_uicore>
+            <general>
+                <enable>1</enable>
+            </general>
+            <style_guide>
+                <enable>1</enable>
+                <url>ui</url>
+            </style_guide>
+            <product_labels>
+                <new_label>New</new_label>
+                <sale_label>Sale</sale_label>
+                <show_percentage>0</show_percentage>
+            </product_labels>
+            <social_sharing>
+                <enable>0</enable>
+                <share_buttons></share_buttons>
+            </social_sharing>
+        </rw_uicore>
+    </default>
+</config>

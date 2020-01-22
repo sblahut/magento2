@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rocket Web
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category  RocketWeb
+ * @package   RocketWeb_CheckoutEnhacement
+ * @copyright Copyright (c) 2016-2017 RocketWeb (http://rocketweb.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author    Rocket Web Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rocketweb_checkout_enhancement>
+            <payment>
+                <active_default_payment>1</active_default_payment>
+                <default_method>authnetcim</default_method>
+            </payment>
+            <google_map>
+                <api_key />
+            </google_map>
+            <google_map_address>
+                <active_google_address>1</active_google_address>
+                <libraries><![CDATA[places]]></libraries>
+                <country><![CDATA[US,CA]]></country>
+                <language><![CDATA[en_US]]></language>
+                <active_google_address_account>1</active_google_address_account>
+                <active_google_address_billing>1</active_google_address_billing>
+            </google_map_address>
+        </rocketweb_checkout_enhancement>
+    </default>
+</config>

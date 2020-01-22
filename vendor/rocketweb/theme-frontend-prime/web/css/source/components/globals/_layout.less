@@ -1,0 +1,204 @@
+/**
+ * Copyright © 2019 Rocket Web. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//
+//  Variables
+//  ---------------------------------------------
+@rw-layout__gutter: 15px;
+@rw-layout__grid-gap: 10px;
+@rw-layout__grid-width--min: 200px;
+
+
+//
+//  Utilities
+//  ---------------------------------------------
+
+/**
+ * Flexbox
+ */
+.flex-set() {
+    .lib-vendor-prefix-display();
+    // margin: 0 -@rw-layout__gutter;
+}
+
+.flex-wrap() {
+    .lib-vendor-prefix-flex-wrap(wrap);
+}
+
+.flex-direction(@direction: row) {
+    .lib-vendor-prefix-flex-direction(@direction);
+}
+
+.flex-basis(@width: 50%) {
+    .lib-vendor-prefix-flex-basis(@width);
+}
+
+.flex-align(@position: center) {
+    .lib-vendor-box-align(@position);
+}
+
+.flex-justify(@position) {
+    .lib-css(justify-content, @position, 1);
+}
+
+/**
+ * CSS Grid
+ */
+.grid-auto(@width: minmax(@rw-layout__grid-width--min, 1fr); @method: auto-fit) {
+    grid-template-columns: repeat(@method, @width);
+}
+
+.grid-set(@cols: 3) {
+    grid-template-columns: repeat(@cols, auto);
+}
+
+.grid-column(@start; @end) {
+    grid-column: @start e('/') @end;
+}
+
+.grid-row(@start; @end) {
+    grid-row: @start e('/') @end;
+}
+
+
+//
+//  Styles
+//  ---------------------------------------------
+& when (@media-common = true) {
+    /**
+     * Column layout
+     */
+    @total-columns: 12;
+
+    .column-wrapper {
+        box-sizing: border-box;
+        .lib-column-wrapper();
+        .lib-clearfix();
+    }
+
+    .column {
+        &--half {
+            .lib-column(6);
+        }
+
+        &--one-third {
+            .lib-column(12);
+        }
+
+        &--one-fourth {
+            .lib-column(6);
+        }
+
+        &--last {
+            .lib-end-column();
+        }
+    }
+
+    .page-wrapper {
+        overflow: hidden;
+        position: relative;
+
+        .ie10 &,
+        .ie11 & {
+            height: auto;
+        }
+    }
+
+    /**
+     * Flex layout
+     */
+    .flex {
+        .flex-set();
+
+        &__item {
+            .lib-vendor-prefix-flex-grow(1);
+            .lib-vendor-prefix-flex-shrink(1);
+            .lib-css(box-sizing, border-box, 1);
+
+            &--50 {
+                .flex-basis(50%);
+            }
+
+            &--33 {
+                .flex-basis(33.33%);
+            }
+
+            &--25 {
+                .flex-basis(25%);
+            }
+        }
+
+        &--wrap {
+            .flex-wrap();
+        }
+
+        &--row {
+            .flex-direction();
+        }
+    }
+
+    /**
+     * Grid layout
+     */
+    .grid {
+        display: grid;
+        grid-gap: @rw-layout__grid-gap;
+
+        &--auto {
+            .grid-auto();
+        }
+
+        &--2 {
+            .grid-set(2);
+        }
+
+        &--3 {
+            .grid-set(3);
+        }
+
+        &--4 {
+            .grid-set(4);
+        }
+
+        &--6 {
+            .grid-set(6);
+        }
+    }
+
+    /**
+     * General layout
+     */
+    .page-layout {
+        &-full-width {
+            .page-main {
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    .container {
+        max-width: @layout__max-width;
+        margin: 0 auto;
+    }
+}
+
+// Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .columns {
+        clear: both;
+    }
+
+    .column {
+        &--one-third {
+            .lib-column(4);
+        }
+
+        &--one-fourth {
+            .lib-column(3);
+        }
+    }
+}
