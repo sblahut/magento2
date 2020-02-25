@@ -1,0 +1,39 @@
+
+<div class="rw-google-address-container fieldset" data-bind="afterRender: afterRender()">
+    <!-- ko foreach: { data: getNamesArea(), as: 'element' } -->
+    <!-- ko if: hasTemplate() -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+    <!-- /ko -->
+    <legend class="legend">
+        <span data-bind="i18n: 'Your Address:'"></span>
+    </legend>
+    <div class="actions" data-bind="mageInit:{rwGoogleAddressTab: {'search_area': '#'+$parent.dataScopePrefix+'-address-search-billing','complete_form': '#'+$parent.dataScopePrefix+'-complete-form'}}" >
+        <a class="google-auto-address active" data-bind="i18n: 'Search'"></a><a class="google-fill-address" data-bind="i18n: 'Enter manually'"></a>
+    </div>
+    <div class="rw-google-address-search-billing fieldset"  data-bind="attr:{
+                       id:$parent.dataScopePrefix+'-address-search-billing'
+                       }">
+        <div class="field">
+            <div class="control">
+                <input class="rw-google-autocomplete-billing" placeholder="Begin typing your address to search..." type="text"
+                       data-bind="attr:{
+                       id:$parent.dataScopePrefix+'-autocomplete-billing'
+                       },
+                       afterRender: afterRenderSearchInput()"/>
+                <span class="note"><span data-bind="i18n:'If the address does not generate automatically, please choose '"></span><strong data-bind="i18n: '&quot;Enter manually&quot;'"></strong><span data-bind="i18n:' above'"></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="rw-google-complete-form-billing fieldset" style="display: none"
+         data-bind="attr:{
+            id: $parent.dataScopePrefix+'-complete-form'
+            },
+            afterRender: afterRenderSearchForm()">
+        <!-- ko foreach: { data: getAddressArea(), as: 'element' } -->
+        <!-- ko if: hasTemplate() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>

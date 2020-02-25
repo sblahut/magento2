@@ -1,0 +1,150 @@
+/**
+ * Copyright © 2019 Rocket Web. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//
+//  Styles
+//  ---------------------------------------------
+& when (@media-common = true) {
+    .preheader {
+        text-align: center;
+
+        > p {
+            margin: 0;
+        }
+    }
+
+    .logo-container,
+    .search-container,
+    .links-container {
+        .flex-align(center);
+    }
+
+    .search-container {
+        .flex-direction(column);
+        .flex-justify(center);
+    }
+
+    .links-container {
+        .flex-justify(flex-end);
+    }
+    
+    .header-dropdown {
+        .lib-dropdown(
+            @_dropdown-list-position-right: 0,
+            @_dropdown-list-pointer-position: right,
+            @_dropdown-list-item-padding: @indent__xs @indent__s
+        );
+        .dropdown {
+            width: 180px;
+        }
+    }
+}
+
+//  ---------------------------------------------
+//
+//  Mobile
+//  ---------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    
+    .header {
+        margin: 0;
+        height: 200px;
+        background-color: #292929;
+        .flex-justify(space-between);
+    }
+
+    .logo {
+        margin: 0 0 0 15%;
+        margin-bottom: 600%;
+    }
+    .logo-container,
+    .links-container,
+    .toggle-wrapper {
+        padding: 0;
+        margin: 0;
+        .flex-align(center);
+    }
+
+    .logo-container {
+        .flex-basis(68%);
+        .flex-justify(center);
+    }
+
+    .links-container {
+        .flex-basis(20%);
+    }
+
+    .toggle-wrapper {
+        .flex-basis(10%);
+    }
+
+    .sticky-header {
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1010;
+            background: #fff;
+        }
+    }
+}
+//  ---------------------------------------------
+//
+//  Tablet
+//  ---------------------------------------------
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+
+    .header {
+        margin: 0;
+        height: 200px;
+        background-color: #292929;
+        .flex-justify(space-between);
+    }
+
+    .logo {
+        margin: 0 0 0 15%;
+        margin-bottom: 600%;
+    }
+
+}
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+}
+//  ---------------------------------------------
+//
+//  Desktop
+//  ---------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .sticky-header {
+        .flex-set();
+
+        .panel,
+        .logo-container,
+        .search-container {
+            .lib-visually-hidden();
+        }
+
+        .page-header {
+            position: fixed;
+            top: 0;
+            right: 15px;
+
+            .header {
+                padding: 10px 15px;
+            }
+        }
+
+        .nav-sections {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: @dropdown-list__shadow;
+        }
+    }
+}

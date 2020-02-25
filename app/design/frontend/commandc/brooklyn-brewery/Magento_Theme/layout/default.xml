@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<page 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Removed elements -->
+        <referenceBlock name="report.bugs" remove="true"/>
+        <referenceBlock name="currency" remove="true"/>
+        <referenceBlock name="top.links" remove="true"/>
+        <referenceBlock name="navigation.sections" remove="true"/> 
+        <referenceBlock name="advanced-search-link" remove="true"/>
+        <referenceBlock name="footer.middle" remove="true" />
+        <referenceBlock name="header.panel" remove="true" />
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="form.subscribe" remove="true" />
+        <referenceBlock name="navigation.sticky" remove="true" />
+        <referenceBlock name="navigation.main" remove="true"/>
+
+        <!-- Header layout modifications -->
+        <referenceContainer name="header-wrapper" htmlClass="header content flex flex--wrap">
+            <block class="Magento\Framework\View\Element\Template" name="navigation.toggle" template="Magento_Theme::html/header/hamburger.phtml" />
+            <container name="header.logo" as="logo-container" htmlTag="div" htmlClass="flex__item flex logo-container"/>
+            <container name="header.search" as="search-container" htmlTag="div" htmlClass="flex__item flex search-container hidden-m" />
+            <container name="header.links" as="links-container" htmlTag="div" htmlClass="flex__item flex links-container">
+        <!-- Main Nav-->
+   
+            <block class="Magento\Framework\View\Element\Template" name="main.nav" template="Magento_Customer::nav/main.phtml">
+                <block class="Magento\Framework\View\Element\Html\Link" name="our-beers">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">OUR BEERS</argument>
+                            <argument name="path" xsi:type="string" translate="true">our-beers</argument>
+                        </arguments>
+                    </block>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="navigation.account.menu" template="Magento_Customer::nav/account-dropdown.phtml">
+                    <block class="Magento\Framework\View\Element\Html\Link" name="orders-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">My Orders</argument>
+                            <argument name="path" xsi:type="string" translate="true">sales/order/history/</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link" name="logout-link" after="-">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Sign Out</argument>
+                            <argument name="path" xsi:type="string" translate="true">customer/account/logout</argument>
+                        </arguments>
+                    </block>
+                 </block> 
+                <block class="Magento\Framework\View\Element\Template" name="minicart.js" template="Magento_Checkout::cart/show-minicart.phtml" after="-"/>   
+            </container>
+        </referenceContainer>
+        <move element="logo" destination="header.logo" before="-"/>
+        <move element="catalog.compare.link" destination="header.search" after="-"/>
+        <move element="minicart" destination="header.links" after="main.nav"/>
+        <move element="authorization-link" destination="navigation.account.menu"/>
+        <move element="register-link" destination="navigation.account.menu"/>
+        <move element="my-account-link" destination="navigation.account.menu"/>
+        <move element="wish-list-link" destination="navigation.account.menu"/>
+        <move element="multiple-wish-list-link" destination="navigation.account.menu"/>
+        <move element="top.search" destination="header.links" before="navigation.account.menu"/>
+
+        <!-- Main menu modifications -->
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template" name="navigation.main" before="-" template="Magento_Theme::html/main-nav.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="mobile.search" template="Magento_Search::search-mobile.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="navigation.account.menu.mobile" template="Magento_Customer::nav/account-menu.phtml"/>
+            </block>
+            <!-- Sticky header -->
+            <block class="Magento\Framework\View\Element\Template" name="navigation.sticky" template="Magento_Theme::html/header/sticky-header.phtml" />
+        </referenceContainer>
+        <move element="catalog.topnav" destination="navigation.main" before="-"/> 
+                
+        <!-- Preheader message -->
+        <referenceContainer name="header.panel">        
+            <container name="preheader" htmlTag="div" htmlClass="preheader">
+                <block class="Magento\Framework\View\Element\Template" name="preheader.message" template="Magento_Theme::html/preheader.phtml" />
+            </container>
+        </referenceContainer>
+
+        <!-- Footer modifications -->
+        <referenceContainer name="footer-container">
+            <container name="footer.bottom" htmlTag="div" htmlClass="footer__bottom" />
+            <block class="Magento\Framework\View\Element\Template" name="footer.bottom.links" template="Magento_Theme::html/footer-bottom.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string">Filter</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="footer" htmlClass="footer content flex flex--wrap">
+            <block class="Magento\Framework\View\Element\Template" name="footer.left" template="Magento_Theme::html/footer-column-left.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string">Customer Service</argument>
+                    <argument name="enabled" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="footer.middle" template="Magento_Theme::html/footer-column.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string">Static Links</argument>
+                    <argument name="enabled" xsi:type="boolean">true</argument>
+                </arguments>
+                <block class="Magento\Cms\Block\Block" name="top.banner">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links_block</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="footer.right" template="Magento_Theme::html/footer-column-right.phtml">
+                <arguments>
+                    <argument name="enabled" xsi:type="boolean">true</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\Template" name="footer.social" template="Magento_Theme::html/footer-social.phtml">
+                    <arguments>
+                        <argument name="social" xsi:type="array">
+                            <item name="facebook" xsi:type="array">
+                                <item name="title" xsi:type="string">Facebook</item>
+                                <item name="url" xsi:type="string">http://www.facebook.com/rocketweb</item>
+                                <item name="icon" xsi:type="string">fb</item>
+                            </item>
+                            <item name="twitter" xsi:type="array">
+                                <item name="title" xsi:type="string">Twitter</item>
+                                <item name="url" xsi:type="string">http://www.twitter.com/rocketweb</item>
+                                <item name="icon" xsi:type="string">tw</item>
+                            </item>
+                            <item name="pinterest" xsi:type="array">
+                                <item name="title" xsi:type="string">Pinterest</item>
+                                <item name="url" xsi:type="string">http://www.pinterest.com/rocketweb</item>
+                                <item name="icon" xsi:type="string">pt</item>
+                            </item>
+                            <item name="instagram" xsi:type="array">
+                                <item name="title" xsi:type="string">Instagram</item>
+                                <item name="url" xsi:type="string">http://www.instagram.com/rocketweb</item>
+                                <item name="icon" xsi:type="string">ig</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+        
+     
+        <move element="copyright" destination="footer.right" after="-"/>
+        <move element="footer.social" destination="footer.right" after="-"/>
+
+
+  
+
+        
+
+        <referenceContainer name="before.body.end" htmlClass="lazysizes" htmlTag="div">
+            <block class="Magento\Framework\View\Element\Template" name="scripts.lazysizes" template="Magento_Theme::html/lazysizes.phtml" />
+         </referenceContainer>
+    </body>
+</page>

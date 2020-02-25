@@ -1,0 +1,66 @@
+& when (@media-common = true) {
+    .filter-subtitle,
+    .filter-current-subtitle {
+        .lib-visually-hidden();
+    }
+
+    .filter-options {
+        [data-collapsible='true'] {
+            cursor: pointer;
+
+            &::after {
+                float: right;
+                content: '\2303';
+            }
+
+            &[aria-expanded='false'] {
+                &::after {
+                    .lib-css(transform, rotate(180deg), 1);
+                }
+            }
+        }
+    }
+
+    .filter-current {
+        .item {
+            display: inline-block;
+            border: solid 1px @border-color__base;
+            background: @color-gray94;
+            color: @color-gray40;
+            padding: 2px 5px;
+        }
+
+        .filter-label {
+            .lib-visually-hidden();
+        }
+
+        .filter-value {
+            .lib-font-size(@font-size__s);
+
+            + .remove {
+                .lib-icon-font(
+                    @_icon-font: @rw-icon__font,
+                    @_icon-font-content: @rw-icon-close,
+                    @_icon-font-color: @color-gray40,
+                    @_icon-font-size: 10px,
+                    @_icon-font-position: after,
+                    @_icon-font-margin: 0 0 0 5px,
+                    @_icon-font-vertical-align: middle,
+                    @_icon-font-text-hide: true
+                );
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .filter-title {
+        width: 100%;
+        text-align: center;
+        .lib-button-primary();
+    }
+
+    .block.filter {
+        margin-bottom: 0;
+    }
+}
