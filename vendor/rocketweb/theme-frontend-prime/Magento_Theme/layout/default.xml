@@ -140,11 +140,6 @@
         <move element="copyright" destination="footer.right" after="-"/>
         <move element="footer.social" destination="footer.right" after="-"/>
 
-
-  
-
-        
-
         <referenceContainer name="before.body.end" htmlClass="lazysizes" htmlTag="div">
             <block class="Magento\Framework\View\Element\Template" name="scripts.lazysizes" template="Magento_Theme::html/lazysizes.phtml" />
          </referenceContainer>
