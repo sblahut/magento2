@@ -3,7 +3,134 @@
 @rw-label_sale_color: @color-orange-red1;
 
 & when (@media-common = true) {
-    .product-labels {
+    
+    // Bundle Product
+    .page-product-bundle {
+            // Updates to Header on PDP Only
+    .catalog-product-view { 
+        .page-header {
+            height: 130px;
+            background-color: #2e2e2e;
+    }
+        // Adjusted Padding for Product Information
+        .page-layout-1column .product-info-main {
+            width: 38%;
+            padding-left: 2%;
+        }
+        // Updates to Logo & Main Nav for Smaller Header
+        .logo {
+            height: 130px;
+            margin-top: -25px;
+        }
+        .links-container {
+            height: 130px;
+            margin-top: -25px;
+        }
+        .main-nav {
+            height: 130px;
+            margin-bottom: -90px;
+        }
+        /* Not working yet...
+        .product-info-stock-sku {
+        .product.attribute.sku {
+            .value {
+            margin-top: 0px;
+            }
+        }
+    }*/
+    }
+}
+    // Simple Product
+    // Updates to Header on PDP Only
+    .catalog-product-view { 
+        .page-header {
+            height: 130px;
+            background-color: #2e2e2e;
+    }
+        // Updates to Logo & Main Nav for Smaller Header
+        .logo {
+            height: 130px;
+            margin-top: -25px;
+        }
+        .links-container {
+            height: 130px;
+            margin-top: -25px;
+        }
+        .main-nav {
+            height: 130px;
+            margin-bottom: -90px;
+        }
+}
+    // Product Title
+    .product-info-main .page-title-wrapper .page-title {
+        width: 70%;
+        text-transform: uppercase;
+        line-height: 45px;
+        font-size: 50px;
+        font-weight: 400;
+    }
+    // Adjusted Padding for Product Information
+    .page-layout-1column .product-info-main {
+        width: 38%;
+        padding-left: 2%;
+    }
+    // Removed Custom Options 2nd Add to Cart Button & Qty Box
+    .product-options-bottom {
+        display: none;
+    }
+    // Removed In stock / Out of Stock Tag
+    .product-info-main .stock.available, 
+    .product-info-main .stock.unavailable {
+        display: none;
+    }
+    // Prices
+    .product-info-main .price-box {
+        display: ruby;
+        font-size: 30px;
+        margin-left: 100px;
+    }
+    .special-price {
+        color: red;
+        font-size: 60px;
+        font-weight: 400;
+        margin-left: 120px;
+    }
+    .old-price {
+        color: #aeaeae;
+        font-weight: 400;
+        text-decoration: line-through;
+        margin-left: -140px;
+    }
+    // Add To Cart Button
+    .action-primary-tocart {
+        width: 407px;
+        height: 80px;
+        color: white;
+        background-color: #009844;
+    }
+    // Removed Top Qty Box
+    .field-qty {
+        display: none;
+    }
+    // Removed Price Labels
+    .price-label {
+        display: none;
+    }
+    // Relocate SKU
+    .product-info-main .product.attribute.sku {
+        margin-top: -380px;
+        .type {
+            // Removed SKU Label
+            display: none;
+        }
+    }
+    .product-info-main .product.attribute.overview  {
+        padding-top: 50px;
+    }
+    
+
+    /*  Remove Label Styling - Saved for Future Reference
+        .product-labels {
         position: relative;
         z-index: 10;
 
@@ -36,6 +163,54 @@
                 &::before {
                     content: '-';
                 }
+            }
+        }
+    } */
+    // Removed Sale Tag
+    .sale-label {
+        display: none;
+    }
+    // Removed lower Add to Cart Button
+    .actions2 {
+        display: none;
+    }
+}
+
+    //  ---------------------------------------------
+    //
+    //  Tablet
+    //  ---------------------------------------------
+    @media only screen and (min-width: 768px) and (max-width: 1200px) {
+        // SKU Displayed on PDP
+        .catalog-product-view {
+        .product-info-main .product.attribute.sku {
+            margin-top: -440px;
+        }
+        // Change Layout For Tablet
+        .page-layout-1column .column.main {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+    //  ---------------------------------------------
+    //
+    //  Mobile
+    //  ---------------------------------------------
+    .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+
+        
+        .catalog-product-view {
+            // SKU Displayed on PDP
+            .product-info-main .product.attribute.sku {
+                margin-top: -450px;
+            }
+            // Product Details Column
+            .page-layout-1column {
+                .product-info-main {
+                width: 98%;
             }
         }
     }

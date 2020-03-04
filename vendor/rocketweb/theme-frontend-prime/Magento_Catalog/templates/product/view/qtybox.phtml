@@ -1,3 +1,4 @@
+<!-- __________________Creating new PHTML file for reference of QTY Box __________________ -->
 <?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
@@ -14,7 +15,7 @@
 <div class="box-tocart">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>
-        <div class="field-qty">
+        <div class="field-qty2">
             <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
             <script type="text/x-magento-init">
             {
@@ -48,10 +49,11 @@
             </div>
         </div>
         <?php endif; ?>
-        <div class="actions">
+       
+        <div class="actions2">
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                    class="action-primary-tocart"
+                    class="action primary tocart"
                     id="product-addtocart-button">
                 <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
             </button>
