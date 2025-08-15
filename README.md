@@ -42,3 +42,5 @@ They must also include a xml file within app > code > <module name> -> etc <modu
 Command C
 
 <b>License</b>
+
+This is a private theme developed for Brooklyn Brewery by Steven Blahut and Zero Tech, LLC. All rights reserved.
